@@ -1,0 +1,77 @@
+car(honda).
+car(toyota).
+car(mazda).
+car(acura).
+
+color(red).
+color(blue).
+color(green).
+
+witness(amy).
+witness(betty).
+witness(cathy).
+witness(diane).
+
+person(frank).
+person(billy).
+person(jimmy).
+person(johnny).
+
+saw-id(1).
+saw-id(2).
+saw-id(3).
+saw-id(4).
+
+drives-id(1).
+drives-id(2).
+drives-id(3).
+
+% saw(ID, Witness, Color, Car)
+
+saw(1, amy, blue, honda) [x1=1].
+saw(1, amy, red, toyota) [x1=2].
+saw(1, amy, nothing) [x1=3].
+
+@p(x1=1) = 0.7.
+@p(x1=2) = 0.2.
+@p(x1=3) = 0.1.
+
+saw(2, betty, green, mazda) [x2=1].
+saw(2, betty, green, toyota) [x2=2].
+saw(2, betty, green, honda) [x2=3].
+saw(2, betty, green, acura) [x2=4].
+
+@uniform x2.
+
+saw(3, cathy, red, acura) [x3=1].
+saw(3, cathy, nothing) [x3=2].
+
+@p(x3=1) = 0.6.
+@p(x3=2) = 0.4.
+
+saw(4, diane, red, toyota) [x4=1].
+saw(4, diane, blue, toyota) [x4=2].
+
+@p(x4=1) = 0.9.
+@p(x4=2) = 0.1.
+
+% drives(ID, Person, Color, Car)
+
+drives(1, frank, red, toyota) [y1=1].
+drives(1, frank, blue, toyota) [y1=2].
+
+@p(y1=1) = 0.8.
+@p(y1=2) = 0.2.
+
+drives(2, billy, blue, honda) [y2=1].
+drives(2, billy, nothing) [y2=2].
+
+@p(y2=1) = 0.7.
+@p(y2=2) = 0.3.
+
+drives(3, jimmy, green, mazda) [y3=1].
+drives(3, johnny, green, mazda) [y3=2].
+
+@p(y3=1) = 0.5.
+@p(y3=2) = 0.5.
+
