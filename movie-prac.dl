@@ -1,0 +1,54 @@
+% Good practice: full denormalization.
+
+movie_id(1).
+
+movie_name(1,"The Namesake").
+
+movie_year(1,2006).
+
+movie(MID,Name,Year) :-
+	movie_id(MID), movie_name(MID,Name), movie_year(MID,Year).
+
+
+genre_id(1).
+genre_id(2).
+
+genre_movie(1,1).
+genre_movie(2,1).
+
+genre_genre(1,drama).
+genre_genre(1,comedy).
+
+genre(GID,MID,G) :- genre_id(GID), genre_genre(GID,G), genre_movie(GID,MID).
+
+
+actor_id(1).
+actor_id(2).
+actor_id(3).
+
+actor_name(1,"Sudipta Bhawmik").
+actor_name(2,"Glenne Headley").
+actor_name(3,"Tamal Roy Choudhury").
+
+actor_movie_role(1,1,"Subroto Mesho").
+actor_movie_role(2,1,"Lydia").
+actor_movie_role(3,1,",Ashoke's Father").
+
+actor(AID,MID,Name,Role) :-
+	actor_id(AID),
+	actor_movie_role(AID,MID,Role),
+	actor_name(AID,Name).
+
+
+actorofmovie(Actor,Movie) :-
+	movie(MID,Movie,Year),
+	actor(AID,MID,Actor,Role).
+
+actororroleofmovie(Name,actor,Movie) :-
+   movie(MID,Movie,Year),
+	actor(AID,MID,Name,Role).
+actororroleofmovie(Name,role,Movie) :-
+	movie(MID,Movie,Year),
+	actor(AID,MID,Sctor,Name).
+
+
